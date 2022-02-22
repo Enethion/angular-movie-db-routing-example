@@ -10,6 +10,9 @@ import { MovieDetailsComponent } from './pages/movies/movie-details/movie-detail
 import { MoviesComponent } from './pages/movies/movies.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { MoviesInCategoryComponent } from './pages/categories/movies-in-category/movies-in-category.component';
+import { AppRoutingModule } from './app-routing.module';
+import { YearsComponent } from './pages/years/years.component';
+import { MoviesInYearComponent } from './pages/years/movies-in-year/movies-in-year.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,10 @@ import { MoviesInCategoryComponent } from './pages/categories/movies-in-category
     PageNotFoundComponent,
     MoviesInCategoryComponent,
     MovieCoverComponent,
+    YearsComponent,
+    MoviesInYearComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -8,7 +8,7 @@
       <p>{{ movie.plot.slice(0, 100) }}...</p>
     </div>
     <div class="card-action">
-      <a class="black-text">More >></a>
+      <a class="black-text" [routerLink]="['/movies', movie.id]" routerLinkActive="router-link-active" >More >></a>
     </div>
   </div>
 </div>
