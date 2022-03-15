@@ -1,0 +1,92 @@
+import { Component, OnInit } from '@angular/core';
+import { Movie } from 'src/app/models/movie';
+import { HttpMoviesService } from 'src/app/services/http-movies.service';
+
+@Component({
+  selector: 'app-http-test',
+  templateUrl: './http-test.component.html',
+  styleUrls: ['./http-test.component.css'],
+})
+export class HttpTestComponent {
+  errorMessage: string
+
+  constructor(private http: HttpMoviesService) {}
+
+  get() {
+    this.http.getMovies().subscribe({error: (err: string) => {
+      this.errorMessage = err
+      setTimeout(() => {this.errorMessage = null}, 5000)
+    }})
+  }
+
+  post() {
+    const movie: Movie = {
+      country: 'Poland',
+      director: 'Marek Brodzki',
+      category: 'Fantasy',
+      plot: 'Zabójca potworów musi wybrać mniejsze zło',
+      poster: null,
+      year: '2001',
+      title: 'Wiedźmin',
+      imdbRating: '10.0'
+    }
+
+    this.http.postMovie(movie).subscribe({error: (err: string) => {
+      this.errorMessage = err
+      setTimeout(() => {this.errorMessage = null}, 5000)
+    }})
+  }
+
+  put() {
+    const movie: Movie = {
+      id: '54',
+      country: 'Poland',
+      director: 'Marek Brodzki',
+      category: 'Fantasy',
+      plot: 'Zabójca potworów musi wybrać mniejsze zło',
+      poster: null,
+      year: '2001',
+      title: 'Wiedźmin 2',
+      imdbRating: '10.0'
+    }
+
+    this.http.putMovie(movie).subscribe({error: (err: string) => {
+      this.errorMessage = err
+      setTimeout(() => {this.errorMessage = null}, 5000)
+    }})
+  }
+
+  patch() {
+    const movie: Partial<Movie> = {
+      id: '54',
+      plot: 'Geralt szuka Ciri'
+    }
+
+    this.http.patchMovie(movie).subscribe({error: (err: string) => {
+      this.errorMessage = err
+      setTimeout(() => {this.errorMessage = null}, 5000)
+    }})
+  }
+
+  delete() {
+    this.http.deleteMovie('54').subscribe({error: (err: string) => {
+      this.errorMessage = err
+      setTimeout(() => {this.errorMessage = null}, 5000)
+    }})
+  }
+
+  error() {
+    this.http.makeError().subscribe({error: (err: string) => {
+      this.errorMessage = err
+      setTimeout(() => {this.errorMessage = null}, 5000)
+    }})
+  }
+
+  headers () {
+    this.http.headers().subscribe()
+  }
+
+  params () {
+    this.http.params().subscribe()
+  }
+}
