@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
+import { AddMovieComponent } from "./pages/add-movie/add-movie.component"
 import { CategoriesComponent } from "./pages/categories/categories.component"
 import { MoviesInCategoryComponent } from "./pages/categories/movies-in-category/movies-in-category.component"
 import { HttpTestComponent } from "./pages/http-test/http-test.component"
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'category/:category', component: MoviesInCategoryComponent },
   { path: 'years', component: YearsComponent },
   { path: 'year/:year', component: MoviesInYearComponent },
+  { path: 'add-movie', component: AddMovieComponent },
   { path: 'http-test', component: HttpTestComponent },
   { path: '**', component: PageNotFoundComponent },
 ]
