@@ -2,6 +2,7 @@
   <a
     class="btn-large grey darken-1"
     *ngFor="let category of categories | async"
+    [routerLink]="['/category', category]" routerLinkActive="router-link-active" 
     >{{ category }}</a
   >
 </div>

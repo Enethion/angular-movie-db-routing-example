@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { HttpService } from '../../../services/http.service';
 import { Movie } from '../../../models/movie';
@@ -13,7 +13,13 @@ import { Movie } from '../../../models/movie';
 export class MoviesInCategoryComponent implements OnInit {
   movies: Observable<Movie[]>;
 
-  constructor() {}
+  constructor(private http: HttpService, private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.movies = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => 
+        this.http.getMoviesFromCategory(params.get('category'))
+      )
+    )
+  }
 }
